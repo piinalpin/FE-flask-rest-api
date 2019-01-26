@@ -53,21 +53,20 @@ export default {
 						  text: "You won't be able to revert this!",
 						  type: 'warning',
 						  showCancelButton: true,
-						  confirmButtonColor: '#4dbd74',
-						  cancelButtonColor: '#f64846',
+						  cancelButtonColor: '#d33',
 						  confirmButtonText: 'Yes, save it!',
 						  reverseButtons: true,
 						}).then((result) => {
-							axios.post(process.env.VUE_APP_ROOT_API + '/mahasiswa', {
+						  if (result.value) {
+						  	axios.post(process.env.VUE_APP_ROOT_API + '/mahasiswa', {
 									body: this.body
 								}).then(response => console.log(response)).catch(e => this.errors.push(e));
-						  if (result.value) {
 						    this.$swal.fire({
 						    	type: 'success',
 						    	title: 'Success!',
 						    	text: 'Data has been saved!',
 						    	confirmButtonColor: '#4dbd74'
-						    }).then(this.$router.push('/mahasiswa/list'));
+						    }).then(this.$router.push('/mahasiswa'));
 						  }
 						})
         }

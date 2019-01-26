@@ -61,6 +61,7 @@ const User = () => import('@/views/users/User')
 // Mahasiswa
 const Mahasiswa = () => import('@/views/mahasiswa/Mahasiswa')
 const FormAddMahasiswa = () => import('@/views/mahasiswa/FormAddMahasiswa')
+const FormEditMahasiswa = () => import('@/views/mahasiswa/FormEditMahasiswa')
 
 Vue.use(Router)
 
@@ -82,19 +83,24 @@ export default new Router({
         },
         {
           path: 'mahasiswa',
-          redirect: '/mahasiswa/list',
+          redirect: '/mahasiswa',
           name: 'Mahasiswa',
           component: {
             render (c) { return c('router-view') }
           },
           children: [
             {
-              path: 'list',
+              path: '/',
               component: Mahasiswa
             },
             {
               path: 'add',
               component: FormAddMahasiswa
+            },
+            {
+              path: ':id',
+              name: 'Edit Mahasiswa',
+              component: FormEditMahasiswa
             }
           ]
         },
