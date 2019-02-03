@@ -10,4 +10,4 @@ npm run serve
 ```
 
 ### Want to demo online?
-#### [Front End Vue.js Consume Flask REST API](https://sentiment-analysis-naive-bayes.herokuapp.com/)
+#### [Front End Vue.js Consume Flask REST API](https://fe-flask-rest-api-maverick.herokuapp.com/)
