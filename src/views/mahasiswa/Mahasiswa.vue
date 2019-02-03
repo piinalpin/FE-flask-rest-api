@@ -105,20 +105,27 @@
 			  confirmButtonText: 'Yes, save it!',
 			  reverseButtons: true,
 			}).then((result) => {
-				axios.delete(process.env.VUE_APP_ROOT_API + deleteEndPoint).then(response => console.log(response)).catch(e => this.errors.push(e));
 			  if (result.value) {
+			  	axios.delete(process.env.VUE_APP_ROOT_API + deleteEndPoint).then(response => console.log(response)).catch(e => this.errors.push(e));
 			    this.$swal.fire({
 			    	type: 'success',
 			    	title: 'Success!',
 			    	text: 'Data has been deleted!',
 			    	confirmButtonColor: '#4dbd74'
 			    }).then((update) => {
-			    		axios.get(process.env.VUE_APP_ROOT_API + this.endpoint).then((res) => {
-					  		this.items = res.data.mahasiswa;
-					  		console.log(this.items);
-					  	});
-					  	this.rerender();
+		    		axios.get(process.env.VUE_APP_ROOT_API + this.endpoint).then((res) => {
+				  		this.items = res.data.mahasiswa;
+				  		console.log(this.items);
+				  	});
+				  	this.rerender();
 			    });
+			  }
+			  else if (result.dismiss){
+			  	this.$swal.fire({
+			  		type: 'error',
+			  		title: 'Canceled',
+			  		text: 'Your imaginary file is safe.'
+			  	});
 			  }
 			})
 	    }
